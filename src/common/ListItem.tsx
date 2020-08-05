@@ -28,13 +28,17 @@ interface Props {
 
 export default ListItem = ({ name, email }: Props) => {
     return (
-        <View style={styles.container}>
-            <View>
-                <Text style={styles.name}>{name}</Text>
-                <Text>{email}</Text>
+        <View style={{ paddingHorizontal: 20 }}>
+            <View style={styles.container}>
+                <View>
+                    <Text style={styles.name}>{name}</Text>
+                    <Text>{email}</Text>
+                </View>
+                <Icon name="phone" color="green" size={30} />
             </View>
-            <Icon name="phone" color="green" size={30} />
+            <View style={styles.divider} />
         </View>
+
     )
 }
 
@@ -49,5 +53,10 @@ const styles = StyleSheet.create({
     },
     name: {
         fontWeight: 'bold'
+    },
+    divider: {
+        width: '100%',
+        backgroundColor: '#D3D3D3',
+        height: StyleSheet.hairlineWidth
     }
 })

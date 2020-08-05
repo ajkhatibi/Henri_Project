@@ -7,7 +7,7 @@ const UsersScreen = () => {
     const { user } = useUsers();
     const _renderItem = ({ item }) => {
         return (
-            <ListItem email={item.email} name={item.name} />
+            <ListItem email={item.phone} name={item.name} />
         )
     }
     return (
