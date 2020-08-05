@@ -23,7 +23,8 @@
     "react-navigation": "^3.13.0",
     "react-redux": "^7.2.1",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "swr": "^0.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
