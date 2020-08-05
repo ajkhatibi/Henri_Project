@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 
 interface Props {
     id: number;
@@ -25,10 +26,28 @@ interface Props {
     }
 }
 
-export default ListItem = ({ name }: Props) => {
+export default ListItem = ({ name, email }: Props) => {
     return (
-        <View>
-            <Text>{name}</Text>
+        <View style={styles.container}>
+            <View>
+                <Text style={styles.name}>{name}</Text>
+                <Text>{email}</Text>
+            </View>
+            <Icon name="phone" color="green" size={30} />
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        marginVertical: 10
+    },
+    name: {
+        fontWeight: 'bold'
+    }
+})

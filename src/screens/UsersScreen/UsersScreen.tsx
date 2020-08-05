@@ -6,13 +6,12 @@ import ListItem from '../../common/ListItem.tsx';
 const UsersScreen = () => {
     const { user } = useUsers();
     const _renderItem = ({ item }) => {
-        console.log("user: ", item);
         return (
-            <ListItem id={item.id} name={item.name} />
+            <ListItem email={item.email} name={item.name} />
         )
     }
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ flex: 1 }}>
             <FlatList
                 data={user}
                 renderItem={_renderItem}
