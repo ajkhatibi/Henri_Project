@@ -3,7 +3,6 @@ import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Fontisto';
 
 const Todos = ({ title, completed }: { title: string, completed: boolean }) => {
-    console.log("TITLE: ", title);
     const [check, setCheck] = useState(completed);
     const name = check ? "checkbox-active" : "checkbox-passive";
     const color = check ? "green" : "black"

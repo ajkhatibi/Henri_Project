@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import Todos from '../../common/Todos';
 import { useSelector, useDispatch } from "react-redux";
+import Todos from '../../common/Todos';
 import { getTodos } from '../../actions';
 
 const TodosScreen = () => {
@@ -9,7 +9,7 @@ const TodosScreen = () => {
     const todos = useSelector(state => state.users.todos)
     console.log("TODOS: ", todos);
     useEffect(() => {
-        dispatch(getTodos())
+        dispatch(getTodos());
     }, [])
     const _renderItem = ({ item }) => {
         return (

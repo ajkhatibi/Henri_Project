@@ -31,19 +31,40 @@ interface TODOS {
     completed: boolean;
 }
 
+interface COMMENTS {
+    postId: number;
+    id: number;
+    name: string;
+    email: string;
+    body: string;
+}
+
+interface POST {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+}
+
 interface State {
     data: DATA[];
     todos: TODOS[];
+    comments: COMMENTS[];
+    posts: POST[]
 }
+
+
 const INITIAL_STATE: State = {
     data: [],
-    todos: []
+    todos: [],
+    comments: [],
+    posts: []
 }
 
 type Actions = {
     type: types.GET_USERS,
     payload: DATA[]
-} | { type: types.GET_TODOS, payload: TODOS[] }
+} | { type: types.GET_TODOS, payload: TODOS[] } | { type: types.GET_COMMENT, payload: COMMENTS[] } | { type: types.GET_POST, payload: POST[] }
 
 export default (state = INITIAL_STATE, action: Actions) => {
 
@@ -52,6 +73,10 @@ export default (state = INITIAL_STATE, action: Actions) => {
             return { ...state, data: action.payload };
         case types.GET_TODOS:
             return { ...state, todos: action.payload };
+        case types.GET_COMMENT:
+            return { ...state, comments: action.payload };
+        case types.GET_POST:
+            return { ...state, posts: action.payload };
         default:
             return state;
 
