@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, FlatList } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
 import ListItem from '../../common/ListItem.tsx';
 import { getMethod, endPoints, types, getFaces } from '../../actions';
-import { getAdjustedDataArray } from './selectors';
 import { DATA } from '../../reducers/usersReducers';
 import { STORE } from '../../reducers';
 
