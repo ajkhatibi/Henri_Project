@@ -18,7 +18,6 @@ const FeedsScreen = () => {
             <Feeds body={item.body} comment={item.comments} title={item.title} />
         )
     }
-    console.log("FEED: ", feed);
     return (
         <View style={{ flex: 1 }}>
             <FlatList

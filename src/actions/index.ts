@@ -32,7 +32,6 @@ export const getMethod = (url: string, type: string) => async (dispatch: Dispatc
 
 export const getFaces = () => async (dispatch: Dispatch) => {
     try {
-        console.log("ONE")
         const { data } = await axios.get("https://uifaces.co/api", {
             headers: {
                 "X-API-KEY": FACES_KEY,
@@ -40,8 +39,6 @@ export const getFaces = () => async (dispatch: Dispatch) => {
                 'Cache-Control': 'no-cache'
             }
         });
-        console.log("TWO")
-
         dispatch({ type: types.GET_FACES, payload: data });
     } catch (error) {
         throw new Error(error);

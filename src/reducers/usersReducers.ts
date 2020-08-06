@@ -89,7 +89,6 @@ export default (state = INITIAL_STATE, action: Actions) => {
         case types.GET_POST:
             return { ...state, posts: action.payload };
         case types.GET_FACES:
-            console.log("FACES:reducer ", action.payload);
             return { ...state, faces: action.payload };
         default:
             return state;

@@ -17,7 +17,6 @@ const UsersScreen = () => {
             <ListItem email={item.phone} name={item.name} />
         )
     }
-    console.log("DATA SET: ", data);
     return (
         <View style={{ flex: 1 }}>
             <FlatList
