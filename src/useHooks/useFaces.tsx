@@ -14,7 +14,6 @@ export default function useFaces() {
     const { data, loader } = useSWR(`https://uifaces.co/api`, fetcher);
     let faces = [];
     if (data !== undefined) {
-        console.log("FACES: ", data);
         faces = data
 
     }

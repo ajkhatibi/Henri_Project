@@ -6,14 +6,13 @@ import ListItem from '../../common/ListItem.tsx';
 import { getUsers } from '../../actions';
 
 const UsersScreen = () => {
-    const { user } = useUsers();
     const dispatch = useDispatch();
     const memoDispatched = useCallback(() => {
         dispatch(getUsers());
     }, [dispatch])
     const data = useSelector(state => state.users.data);
     useEffect(() => {
-        dispatch(getUsers());
+        memoDispatched();
     }, [])
     const _renderItem = ({ item }) => {
         return (

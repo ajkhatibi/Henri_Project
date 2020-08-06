@@ -6,10 +6,7 @@ import useFaces from '../useHooks/useFaces';
 
 export default ListItem = ({ name, email }: Props) => {
     const { faces } = useFaces();
-    if (faces.length > 0) {
-        console.log("FACES: ", faces);
 
-    }
     const pickRandom = () => {
         const index = faces[Math.floor(Math.random() * faces.length)];
         const removeFromArray = faces.splice(index, 1);
