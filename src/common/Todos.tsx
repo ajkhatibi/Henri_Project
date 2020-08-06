@@ -9,7 +9,7 @@ const Todos = ({ title, completed }: { title: string, completed: boolean }) => {
     return (
         <TouchableOpacity onPress={() => setCheck((state) => !state)} style={styles.container}>
             <Icon name={name} color={color} />
-            <Text>{title}</Text>
+            <Text style={styles.text}>{title}</Text>
         </TouchableOpacity>
     )
 }
@@ -23,5 +23,8 @@ const styles = StyleSheet.create({
         padding: 10,
         height: "10%",
         alignItems: 'center',
+    },
+    text: {
+        marginHorizontal: 10
     }
 })

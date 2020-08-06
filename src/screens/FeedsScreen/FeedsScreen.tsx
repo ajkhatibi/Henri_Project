@@ -4,10 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { getMethod, endPoints, types } from '../../actions';
 import { postWithComments } from './selectors';
 import Feeds from './Feeds';
+import { STORE } from '../../reducers';
 
 const FeedsScreen = () => {
     const dispatch = useDispatch();
-    const feed = useSelector((state) => postWithComments(state));
+    const feed = useSelector((state: STORE) => postWithComments(state));
 
     useEffect(() => {
         dispatch(getMethod(endPoints.posts, types.GET_POST));

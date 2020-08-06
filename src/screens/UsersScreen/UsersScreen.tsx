@@ -5,18 +5,15 @@ import ListItem from '../../common/ListItem.tsx';
 import { getMethod, endPoints, types, getFaces } from '../../actions';
 import { getAdjustedDataArray } from './selectors';
 import { DATA } from '../../reducers/usersReducers';
+import { STORE } from '../../reducers';
 
 const UsersScreen = () => {
     const dispatch = useDispatch();
-    const data = useSelector(state => getAdjustedDataArray(state));
-    const photo = useSelector(state => state.users.faces)
+    const data = useSelector((state: STORE) => state.users.data);
     useEffect(() => {
         dispatch(getFaces())
         dispatch(getMethod(endPoints.users, types.GET_USERS))
     }, [])
-    useEffect(() => {
-        console.log("UIFACES: ", photo);
-    }, [photo])
     const _renderItem = ({ item, index }: { item: DATA, index: number }) => {
         return (
             <ListItem index={index} email={item.phone} name={item.name} />

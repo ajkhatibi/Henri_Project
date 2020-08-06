@@ -53,7 +53,7 @@ interface FACES {
     photo: string;
 }
 
-interface State {
+export interface State {
     data: DATA[];
     todos: TODOS[];
     comments: COMMENTS[];

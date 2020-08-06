@@ -2,16 +2,20 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, ActivityIndicator } from 'react-native';
 import { useSelector } from "react-redux";
 import Icon from 'react-native-vector-icons/Feather';
-import { DATA as Props } from '../reducers/usersReducers';
-import useFaces from '../useHooks/useFaces';
+import { STORE } from '../../reducers';
 
-export default ListItem = ({ name, email, index }: Props) => {
-    const photo = useSelector(state => state.users.faces)
-    console.log("LIST ITEM COMP: photo", photo[index]);
+interface Props {
+    name: string;
+    email: string;
+    index: number;
+}
+
+const ListItem = ({ name, email, index }: Props) => {
+    const photo = useSelector((state: STORE) => state.users.faces)
     return (
         <View style={{ paddingHorizontal: 10 }}>
             <View style={styles.container}>
-                {photo.length > 0 ? <Image source={{ uri: photo[index].photo }} style={{ height: 50, width: 50, borderRadius: 25 }} /> : <ActivityIndicator />}
+                {photo.length > 0 ? <Image source={{ uri: photo[index].photo }} style={styles.image} /> : <ActivityIndicator />}
                 <View style={{ width: '70%' }}>
                     <Text style={styles.name}>{name}</Text>
                     <Text>{email}</Text>
@@ -26,6 +30,8 @@ export default ListItem = ({ name, email, index }: Props) => {
 
     )
 }
+
+export default ListItem;
 
 const styles = StyleSheet.create({
     container: {
@@ -43,5 +49,10 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: '#D3D3D3',
         height: StyleSheet.hairlineWidth
+    },
+    image: {
+        height: 50,
+        width: 50,
+        borderRadius: 25
     }
 })

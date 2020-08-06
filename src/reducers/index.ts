@@ -1,6 +1,11 @@
 import { combineReducers } from 'redux';
-import usersReducers from './usersReducers';
+import usersReducers, { State } from './usersReducers';
 
-export default combineReducers({
+
+export interface STORE {
+    users: State
+}
+
+export default combineReducers<STORE>({
     users: usersReducers
 });
