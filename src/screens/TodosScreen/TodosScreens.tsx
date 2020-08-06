@@ -1,10 +1,28 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
+import Todos from '../../common/Todos';
+import { useSelector, useDispatch } from "react-redux";
+import { getTodos } from '../../actions';
 
 const TodosScreen = () => {
+    const dispatch = useDispatch();
+    const todos = useSelector(state => state.users.todos)
+    console.log("TODOS: ", todos);
+    useEffect(() => {
+        dispatch(getTodos())
+    }, [])
+    const _renderItem = ({ item }) => {
+        return (
+            <Todos title={item.title} completed={item.completed} />
+        )
+    }
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Todos Screen</Text>
+        <View style={{ flex: 1 }}>
+            <FlatList
+                data={todos}
+                renderItem={_renderItem}
+                keyExtractor={(item) => item.id.toString()}
+            />
         </View>
     )
 }

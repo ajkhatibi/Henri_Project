@@ -1,9 +1,12 @@
 import axios from 'axios'
-import { FACES_KEY } from '../../keys';
+import { Dispatch } from 'redux';
 
-const fetcher = url => axios.get(url).then(res => res.data);
+export enum types {
+    GET_USERS = "GET_USERS",
+    GET_TODOS = "GET_TODOS"
+}
 
-export const getUsers = () => async (dispatch) => {
+export const getUsers = () => async (dispatch: Dispatch) => {
     try {
         const { data } = await axios.get("https://jsonplaceholder.typicode.com/users");
         // const resp = await axios.get("https://uifaces.co/api", {
@@ -13,9 +16,18 @@ export const getUsers = () => async (dispatch) => {
         //         'Cache-Control': 'no-cache'
         //     }
         // })
-        console.log("DATA 2: ", data);
-        dispatch({ type: "GET_USERS", payload: data });
+        dispatch({ type: types.GET_USERS, payload: data });
     } catch (error) {
         console.log("ERROR, ", error.response)
+    }
+}
+
+export const getTodos = () => async (dispatch: Dispatch) => {
+    try {
+        const { data } = await axios.get("https://jsonplaceholder.typicode.com/todos/");
+        const newArray = data.slice(0, 10);
+        dispatch({ type: types.GET_TODOS, payload: newArray });
+    } catch (error) {
+        throw new Error(error)
     }
 }

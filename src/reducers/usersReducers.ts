@@ -1,3 +1,5 @@
+import { types } from '../actions/index';
+
 export interface DATA {
     id: number;
     name: string;
@@ -21,23 +23,35 @@ export interface DATA {
         bs: string;
     }
 }
+
+interface TODOS {
+    userId: number;
+    id: number;
+    title: string;
+    completed: boolean;
+}
+
 interface State {
     data: DATA[];
+    todos: TODOS[];
 }
 const INITIAL_STATE: State = {
-    data: []
+    data: [],
+    todos: []
 }
 
 type Actions = {
-    type: "GET_USERS",
+    type: types.GET_USERS,
     payload: DATA[]
-}
+} | { type: types.GET_TODOS, payload: TODOS[] }
 
 export default (state = INITIAL_STATE, action: Actions) => {
 
     switch (action.type) {
-        case "GET_USERS":
+        case types.GET_USERS:
             return { ...state, data: action.payload };
+        case types.GET_TODOS:
+            return { ...state, todos: action.payload };
         default:
             return state;
 
