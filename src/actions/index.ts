@@ -4,7 +4,7 @@ import useSWR from 'swr'
 const fetcher = url => axios.get(url).then(res => res.data);
 
 export const getUsers = () => async (dispatch) => {
-    const { data } = useSWR(`https://jsonplaceholder.typicode.com/users`, fetcher);
-    console.log("DATA 2: ", data);
+    const { data } = await axios.get("https://jsonplaceholder.typicode.com/users");
+    console.log("DATA 2: ");
     dispatch({ type: "GET_USERS", payload: data });
 }

@@ -29,14 +29,15 @@ const INITIAL_STATE: State = {
 }
 
 type Actions = {
-    type: "GET_USER",
+    type: "GET_USERS",
     payload: DATA[]
 }
 
 export default (state = INITIAL_STATE, action: Actions) => {
+
     switch (action.type) {
         case "GET_USERS":
-            console.log("REDUCER: ", action);
+            console.log("REDUCER: ", action.payload);
             return { ...state, data: action.payload };
         default:
             return state;
