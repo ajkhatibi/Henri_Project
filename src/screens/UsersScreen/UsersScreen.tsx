@@ -1,20 +1,25 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
 import ListItem from '../../common/ListItem.tsx';
 import { getMethod, endPoints, types, getFaces } from '../../actions';
 import { getAdjustedDataArray } from './selectors';
+import { DATA } from '../../reducers/usersReducers';
 
 const UsersScreen = () => {
     const dispatch = useDispatch();
     const data = useSelector(state => getAdjustedDataArray(state));
+    const photo = useSelector(state => state.users.faces)
     useEffect(() => {
-        dispatch(getMethod(endPoints.users, types.GET_USERS))
         dispatch(getFaces())
+        dispatch(getMethod(endPoints.users, types.GET_USERS))
     }, [])
-    const _renderItem = ({ item }) => {
+    useEffect(() => {
+        console.log("UIFACES: ", photo);
+    }, [photo])
+    const _renderItem = ({ item, index }: { item: DATA, index: number }) => {
         return (
-            <ListItem email={item.phone} name={item.name} />
+            <ListItem index={index} email={item.phone} name={item.name} />
         )
     }
     return (

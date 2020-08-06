@@ -4,18 +4,16 @@ import { FACES_KEY } from '../../keys';
 
 const fetcher = url => axios.get(url, {
     headers: {
-        "X-API-KEY": FACES_KEY,
-        'Accept': 'application/json',
-        'Cache-Control': 'no-cache'
+        "X-API-KEY": FACES_KEY
     }
 }).then(res => res.data);
 
 export default function useFaces() {
-    const { data, loader } = useSWR(`https://uifaces.co/api`, fetcher);
+    // const { data } = useSWR('https://uifaces.co/api', fetcher);
+    let data = [];
     let faces = [];
-    if (data !== undefined) {
+    if (data !== undefined && data.length > 0) {
         faces = data
-
     }
     return {
         faces

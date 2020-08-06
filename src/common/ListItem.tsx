@@ -1,21 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, ActivityIndicator } from 'react-native';
+import { useSelector } from "react-redux";
 import Icon from 'react-native-vector-icons/Feather';
 import { DATA as Props } from '../reducers/usersReducers';
 import useFaces from '../useHooks/useFaces';
 
-export default ListItem = ({ name, email }: Props) => {
-    const { faces } = useFaces();
-
-    const pickRandom = () => {
-        const index = faces[Math.floor(Math.random() * faces.length)];
-        const removeFromArray = faces.splice(index, 1);
-        return faces[index].photo
-    }
+export default ListItem = ({ name, email, index }: Props) => {
+    const photo = useSelector(state => state.users.faces)
+    console.log("LIST ITEM COMP: photo", photo[index]);
     return (
         <View style={{ paddingHorizontal: 10 }}>
             <View style={styles.container}>
-                {faces.length > 0 ? <Image source={{ uri: faces[Math.floor(Math.random() * faces.length)].photo }} style={{ height: 50, width: 50, borderRadius: 25 }} /> : <ActivityIndicator />}
+                {photo.length > 0 ? <Image source={{ uri: photo[index].photo }} style={{ height: 50, width: 50, borderRadius: 25 }} /> : <ActivityIndicator />}
                 <View style={{ width: '70%' }}>
                     <Text style={styles.name}>{name}</Text>
                     <Text>{email}</Text>

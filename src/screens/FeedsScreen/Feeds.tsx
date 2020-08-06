@@ -12,7 +12,7 @@ const Feeds = ({ comment, body, title }: { comment: object, body: string, title:
                             <Text style={{ fontWeight: 'bold' }}>From: {comment.name}</Text>
                             <Text>{comment.body}</Text>
                         </View>
-                    ) : null}
+                    ) : <Text>no comments to show</Text>}
                 </View>
             )
         } else {

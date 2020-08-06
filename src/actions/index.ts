@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Dispatch } from 'redux';
 import { FACES_KEY } from '../../keys';
+import useSWR from 'swr'
 
 const instance = axios.create({
     baseURL: "https://jsonplaceholder.typicode.com/"
@@ -30,15 +31,24 @@ export const getMethod = (url: string, type: string) => async (dispatch: Dispatc
     }
 }
 
+const fetcher = url => axios.get(url, {
+    headers: {
+        "X-API-KEY": FACES_KEY,
+        'Accept': 'application/json',
+        'Cache-Control': 'no-cache'
+    }
+}).then(res => res.data);
+
 export const getFaces = () => async (dispatch: Dispatch) => {
     try {
+        console.log("ACTIONS: 1");
+
         const { data } = await axios.get("https://uifaces.co/api", {
             headers: {
                 "X-API-KEY": FACES_KEY,
-                'Accept': 'application/json',
-                'Cache-Control': 'no-cache'
             }
         });
+        console.log("ACTIONS: 2", data);
         dispatch({ type: types.GET_FACES, payload: data });
     } catch (error) {
         throw new Error(error);
