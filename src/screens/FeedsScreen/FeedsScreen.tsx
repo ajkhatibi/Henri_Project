@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
-import { getPost, getComment } from '../../actions';
+import { getMethod, endPoints, types } from '../../actions';
 import { postWithComments } from './selectors';
 import Feeds from './Feeds';
 
@@ -10,8 +10,8 @@ const FeedsScreen = () => {
     const feed = useSelector((state) => postWithComments(state));
 
     useEffect(() => {
-        dispatch(getPost());
-        dispatch(getComment());
+        dispatch(getMethod(endPoints.posts, types.GET_POST));
+        dispatch(getMethod(endPoints.comments, types.GET_COMMENT));
     }, []);
     const _renderItem = ({ item }) => {
         return (

@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
 import Todos from '../../common/Todos';
-import { getTodos } from '../../actions';
+import { getMethod, endPoints, types } from '../../actions';
 
 const TodosScreen = () => {
     const dispatch = useDispatch();
-    const todos = useSelector(state => state.users.todos)
-    console.log("TODOS: ", todos);
+    const todos = useSelector(state => state.users.todos).slice(0, 10);
     useEffect(() => {
-        dispatch(getTodos());
+        dispatch(getMethod(endPoints.todos, types.GET_TODOS))
     }, [])
     const _renderItem = ({ item }) => {
         return (

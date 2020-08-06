@@ -1,18 +1,14 @@
 import React, { useEffect, useCallback } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { useSelector, useDispatch } from "react-redux";
-import useUsers from '../../useHooks/useUsers.tsx';
 import ListItem from '../../common/ListItem.tsx';
-import { getUsers } from '../../actions';
+import { getMethod, endPoints, types } from '../../actions';
 
 const UsersScreen = () => {
     const dispatch = useDispatch();
-    const memoDispatched = useCallback(() => {
-        dispatch(getUsers());
-    }, [dispatch])
     const data = useSelector(state => state.users.data);
     useEffect(() => {
-        memoDispatched();
+        dispatch(getMethod(endPoints.users, types.GET_USERS))
     }, [])
     const _renderItem = ({ item }) => {
         return (
