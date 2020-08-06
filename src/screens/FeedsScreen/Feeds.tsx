@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
 const Feeds = ({ comment, body, title }: { comment: object, body: string, title: string }) => {
     const [showComments, setShowComments] = useState(false);
@@ -7,7 +7,12 @@ const Feeds = ({ comment, body, title }: { comment: object, body: string, title:
         if (showComments) {
             return (
                 <View>
-                    {<Text>{comment !== undefined ? comment.body : "no comments to show"}</Text>}
+                    {comment !== undefined ? (
+                        <View>
+                            <Text style={{ fontWeight: 'bold' }}>From: {comment.name}</Text>
+                            <Text>{comment.body}</Text>
+                        </View>
+                    ) : null}
                 </View>
             )
         } else {
@@ -17,7 +22,7 @@ const Feeds = ({ comment, body, title }: { comment: object, body: string, title:
         }
     }
     return (
-        <View>
+        <View style={styles.container}>
             <Text>{title}</Text>
             <Button onPress={() => setShowComments((state) => !state)} title={"show comment(s)"} />
             {renderComments()}
@@ -26,3 +31,9 @@ const Feeds = ({ comment, body, title }: { comment: object, body: string, title:
 }
 
 export default Feeds;
+
+const styles = StyleSheet.create({
+    container: {
+        margin: 10,
+    }
+})
